@@ -8,23 +8,26 @@ const sheetName = 'Form responses 1'; // Replace with your sheet name
 const sheetUrl= `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${sheetName}?key=${apiKey}`
 
     fetch(sheetUrl)
-        .then(response => response.text())
-        .then(csvText => {
-            const rows = csvText.split("\n").map(row => row.split(","));
+        .then(response => response.json())  // Parse the response as JSON
+        .then(data => {
+            // The Google Sheets JSON data is wrapped in a large object; we need to extract rows.
+            const rows = data.table.rows;
             const tableBody = document.querySelector("#contacts-table tbody");
 
             // Define column indexes to exclude (e.g., index 0 for Timestamp)
-            const columnsToExclude = [0]; // This array holds the index of columns you want to hide. 0 means the first column (Timestamp).
+            const columnsToExclude = [0];  // Example: Exclude the first column (e.g., Timestamp)
 
-            rows.forEach((row, index) => {
-                if (index === 0) return; // Skip header row
+            rows.forEach(row => {
                 const tr = document.createElement("tr");
                 
-                // Filter out unwanted columns
-                row.forEach((cell, cellIndex) => {
+                row.c.forEach((cell, cellIndex) => {
+                    // Skip columns that should be excluded
                     if (!columnsToExclude.includes(cellIndex)) {
                         const td = document.createElement("td");
-                        td.textContent = cell;
+
+                        // Check if the cell has valid data, otherwise fill with empty text
+                        td.textContent = cell ? cell.v : 'N/A';  // 'cell.v' holds the actual value
+
                         tr.appendChild(td);
                     }
                 });
