@@ -9,26 +9,31 @@
 </head>
 <body>
     <h1>Contacts of Greater FoCo</h1>
-    <table id="contacts-table">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Address</th>
-                <th>Phone</th>
-                <th>Profession</th>
-                <th>Phone</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Address</th>
-                <th>Phone</th>
-                <th>Profession</th>
-                <th>Phone</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Data from Excel will be loaded here -->
-        </tbody>
-    </table>
+    <div id="total-contacts"></div> <!-- Display total number of contacts here -->
+    
+    <div class="table-container">
+        <table id="contacts-table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Address</th>
+                    <th>Phone</th>
+                    <th>Profession</th>
+                    <th>Joined CSU</th>
+                    <th>Left CSU</th>
+                    <th>Program Type</th>
+                    <th>Department</th>
+                    <th>Research Topic</th>
+                    <th>CSU Email</th>
+                    <!-- Add more headers if needed -->
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Data from the Google Sheet will be loaded here -->
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>
+
