@@ -11,7 +11,7 @@ const sheetUrl= `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/
         .then(response => response.json())  // Parse the response as JSON
         .then(data => {
             // The Google Sheets JSON data is wrapped in a large object; we need to extract rows.
-            const rows = data.table.rows;
+            const rows = data.values;
             const tableBody = document.querySelector("#contacts-table tbody");
 
             // Define column indexes to exclude (e.g., index 0 for Timestamp)
