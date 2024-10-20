@@ -8,26 +8,26 @@ const sheetName = 'Form responses 1'; // Replace with your sheet name
 const sheetUrl= `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${sheetName}?key=${apiKey}`
 
     fetch(sheetUrl)
-        .then(response => response.json())  // Parse the response as JSON
+        .then(response => response.json())  // Parse response as JSON
         .then(data => {
-            // The Google Sheets JSON data is wrapped in a large object; we need to extract rows.
-            const rows = data.values;
+            const rows = data.values;  // Access the rows via 'data.values'
             const tableBody = document.querySelector("#contacts-table tbody");
 
             // Define column indexes to exclude (e.g., index 0 for Timestamp)
             const columnsToExclude = [0];  // Example: Exclude the first column (e.g., Timestamp)
 
-            rows.forEach(row => {
+            rows.forEach((row, rowIndex) => {
+                // Skip the header row if needed
+                if (rowIndex === 0) return;
+
                 const tr = document.createElement("tr");
-                
-                row.c.forEach((cell, cellIndex) => {
+
+                row.forEach((cell, cellIndex) => {
                     // Skip columns that should be excluded
                     if (!columnsToExclude.includes(cellIndex)) {
                         const td = document.createElement("td");
-
-                        // Check if the cell has valid data, otherwise fill with empty text
-                        td.textContent = cell ? cell.v : 'N/A';  // 'cell.v' holds the actual value
-
+                        // Check if the cell has valid data, otherwise fill with 'N/A'
+                        td.textContent = cell || 'N/A';  // Default to 'N/A' if cell is empty
                         tr.appendChild(td);
                     }
                 });
