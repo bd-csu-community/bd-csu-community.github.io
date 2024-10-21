@@ -15,7 +15,7 @@ const sheetUrl= `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/
             const totalContacts = document.querySelector("#total-contacts");
 
             // Define column indexes to exclude (e.g., index 0 for Timestamp)
-            const columnsToExclude = [0,6];  // Example: Exclude the first column (e.g., Timestamp)
+            const columnsToExclude = [0,3,4,6];  // Example: Exclude the first column (e.g., Timestamp)
 
             // Display total number of rows (excluding the header)
             totalContacts.textContent = `Total contacts: ${rows.length - 1}`;
