@@ -12,9 +12,14 @@ const sheetUrl= `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/
         .then(data => {
             const rows = data.values;  // Access the rows via 'data.values'
             const tableBody = document.querySelector("#contacts-table tbody");
+            const totalContacts = document.querySelector("#total-contacts");
 
             // Define column indexes to exclude (e.g., index 0 for Timestamp)
-            const columnsToExclude = [0];  // Example: Exclude the first column (e.g., Timestamp)
+            const columnsToExclude = [0,6];  // Example: Exclude the first column (e.g., Timestamp)
+
+            // Display total number of rows (excluding the header)
+            totalContacts.textContent = `Total contacts: ${rows.length - 1}`;
+
 
             rows.forEach((row, rowIndex) => {
                 // Skip the header row if needed
