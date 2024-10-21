@@ -25,8 +25,8 @@ const sheetUrl= `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/
                 const valueA = a[7] || ''; // Access the value at index 7, use empty string if missing
                 const valueB = b[7] || '';
                 
-                if (valueA < valueB) return -1;
-                if (valueA > valueB) return 1;
+                if (valueA > valueB) return -1;
+                if (valueA < valueB) return 1;
                 return 0;
             });
 
