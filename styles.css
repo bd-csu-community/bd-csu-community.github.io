@@ -186,7 +186,7 @@ th:nth-child(2), td:nth-child(2) {
 }
 
 th:nth-child(3), td:nth-child(3) {
-    width: 150px; /* Adjust the third column (Phone) width */
+    width: 350px; /* Adjust the third column (Phone) width */
 }
 
 
