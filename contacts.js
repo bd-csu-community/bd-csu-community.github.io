@@ -20,8 +20,17 @@ const sheetUrl= `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/
             // Display total number of rows (excluding the header)
             totalContacts.textContent = `Total contacts: ${rows.length - 1}`;
 
+            // Sort the rows based on column index 7 (change as per your need)
+            const sortedRows = rows.slice(1).sort((a, b) => {
+                const valueA = a[7] || ''; // Access the value at index 7, use empty string if missing
+                const valueB = b[7] || '';
+                
+                if (valueA < valueB) return -1;
+                if (valueA > valueB) return 1;
+                return 0;
+            });
 
-            rows.forEach((row, rowIndex) => {
+            sortedRows.forEach((row, rowIndex) => {
                 // Skip the header row if needed
                 if (rowIndex === 0) return;
 
